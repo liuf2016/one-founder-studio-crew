@@ -5,7 +5,7 @@ description = "Add your description here"
 requires-python = ">=3.12"
 dependencies = [
     "band-sdk[claude-agent-sdk,langgraph]>=6.0.1",
-    "cognee[gemini]",
+    "cognee[gemini]==1.6.5",
     "langchain-openai>=1.7.2",
     "python-dotenv>=1.2.4",
 ]
@@ -18,4 +18,3 @@ requires = ["uv_build>=0.13.1,<0.14.0"]
 build-backend = "uv_build"
 
 [tool.uv.sources]
-cognee = { path = "/Users/xingzhouliu/Development/opensource/cognee", editable = true }

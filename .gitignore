@@ -2,3 +2,8 @@
 agent_config.yaml
 .venv/
 __pycache__/
+logs/
+workspace/
+.cognee_system/
+*.swo
+*.swp
