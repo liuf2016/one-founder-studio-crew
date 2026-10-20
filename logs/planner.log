@@ -1,0 +1,28 @@
+
+[2m2026-10-20T20:27:35.011154[0m [[32m[1minfo     [0m] [1mLog file created at: /Users/xingzhouliu/.cognee/logs/2026-10-20_20-27-34.log[0m [[0m[1m[34mcognee.shared.logging_utils[0m][0m [36mlog_file[0m=[35m/Users/xingzhouliu/.cognee/logs/2026-10-20_20-27-34.log[0m
+
+[2m2026-10-20T20:27:35.011931[0m [[33m[1mwarning  [0m] [1mCognee 1.0 changes: New API — remember/recall/forget/improve (V1 add/cognify/search still work). Session memory enabled by default (CACHING=false to disable). Multi-user access control on by default (ENABLE_BACKEND_ACCESS_CONTROL=false to disable). Agents (@cognee.agent) auto-verified on registration. See https://docs.cognee.ai/[0m [[0m[1m[34mcognee.shared.logging_utils[0m][0m
+
+[2m2026-10-20T20:27:35.012202[0m [[32m[1minfo     [0m] [1mLogging initialized           [0m [[0m[1m[34mcognee.shared.logging_utils[0m][0m [36mcognee_version[0m=[35m1.6.5-local[0m [36mdatabase_path[0m=[35m/Users/xingzhouliu/Development/opensource/cognee/cognee/.cognee_system/databases[0m [36mos_info[0m=[35m'Darwin 25.6.0 (Darwin Kernel Version 25.6.0: Fri Jul 31 19:17:12 PDT 2026; root:xnu-12377.161.14~5/RELEASE_ARM64_T8103)'[0m [36mpython_version[0m=[35m3.12.15[0m [36mstructlog_version[0m=[35m25.5.0[0m
+
+[2m2026-10-20T20:27:35.012325[0m [[32m[1minfo     [0m] [1mDatabase storage: /Users/xingzhouliu/Development/opensource/cognee/cognee/.cognee_system/databases[0m [[0m[1m[34mcognee.shared.logging_utils[0m][0m
+
+[2m2026-10-20T20:27:35.012405[0m [[32m[1minfo     [0m] [1mLoaded settings from /Users/xingzhouliu/Development/GitHub_Projects/agentic_ai/hackathons/AI-startup-challenge/studio-crew/.env; its values take precedence over preset environment variables.[0m [[0m[1m[34mcognee.shared.logging_utils[0m][0m
+
+[2m2026-10-20T20:27:38.038672[0m [[32m[1minfo     [0m] [1mauth posture: authentication=disabled, multi_tenant=disabled (explicit REQUIRE_AUTHENTICATION)[0m [[0m[1m[34mget_authenticated_user[0m][0m
+2026-10-20 13:27:39 [INFO] band.adapters.langgraph: LangGraph adapter started for agent: Planner
+2026-10-20 13:27:39 [INFO] band.runtime.runtime: Starting AgentRuntime for agent 0519bffe-c7db-4f57-8c66-71a8e95a9fed
+2026-10-20 13:27:40 [INFO] band.client.streaming.client: [WebSocket] Subscribing to topic: agent_control:0519bffe-c7db-4f57-8c66-71a8e95a9fed
+2026-10-20 13:27:40 [INFO] band.client.streaming.client: [WebSocket] Subscribed to topic: agent_control:0519bffe-c7db-4f57-8c66-71a8e95a9fed
+2026-10-20 13:27:40 [INFO] band.platform.link: Connected to platform
+2026-10-20 13:27:40 [INFO] band.client.streaming.client: [WebSocket] Subscribing to topic: agent_rooms:0519bffe-c7db-4f57-8c66-71a8e95a9fed
+2026-10-20 13:27:40 [INFO] band.client.streaming.client: [WebSocket] Subscribed to topic: agent_rooms:0519bffe-c7db-4f57-8c66-71a8e95a9fed
+2026-10-20 13:27:40 [INFO] band.client.streaming.client: [WebSocket] Subscribing to topic: chat_room:a4410cf3-36e0-4c37-be2c-900eb94b9fbe
+2026-10-20 13:27:40 [INFO] band.client.streaming.client: [WebSocket] Subscribing to topic: room_participants:a4410cf3-36e0-4c37-be2c-900eb94b9fbe
+2026-10-20 13:27:40 [INFO] band.runtime.presence: Agent joined room: a4410cf3-36e0-4c37-be2c-900eb94b9fbe
+2026-10-20 13:27:40 [INFO] band.runtime.execution: Starting ExecutionContext for room: a4410cf3-36e0-4c37-be2c-900eb94b9fbe
+2026-10-20 13:27:40 [INFO] band.runtime.presence: Subscribed to 1 rooms during startup
+2026-10-20 13:27:40 [INFO] band.runtime.presence: RoomPresence started for agent 0519bffe-c7db-4f57-8c66-71a8e95a9fed
+2026-10-20 13:27:40 [INFO] band.runtime.platform_runtime: Platform runtime started for agent: Planner
+2026-10-20 13:27:40 [INFO] band.agent: Agent started: Planner (band-sdk 6.0.1)
+2026-10-20 13:27:40 [INFO] band.runtime.execution: ExecutionContext a4410cf3-36e0-4c37-be2c-900eb94b9fbe: Startup pass finished; servicing queue and recovery
