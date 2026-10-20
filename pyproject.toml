@@ -6,6 +6,7 @@ requires-python = ">=3.12"
 dependencies = [
     "band-sdk[claude-agent-sdk,langgraph]>=6.0.1",
     "cognee[gemini]==1.6.5",
+    "httpx>=0.28.1",
     "langchain-openai>=1.7.2",
     "python-dotenv>=1.2.4",
 ]

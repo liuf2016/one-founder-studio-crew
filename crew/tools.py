@@ -8,6 +8,8 @@ from pathlib import Path
 import cognee
 from langchain_core.tools import tool
 
+from crew.billing import record_usage
+
 DATASET = "studio_memory"
 WORKSPACE = (Path(__file__).resolve().parent.parent / "workspace").resolve()
 
@@ -57,18 +59,43 @@ def read_file(path: str) -> str:
     return p.read_text()
 
 
+SCAN_ENV = Path("/tmp/studio-scanenv")
+
+
+def _scan_python() -> str:
+    """Snyk's pip test needs the project's dependencies installed; use a throwaway venv."""
+    if not SCAN_ENV.exists():
+        subprocess.run(["uv", "venv", "-q", "--seed", str(SCAN_ENV)], check=True)
+    py = str(SCAN_ENV / "bin" / "python")
+    subprocess.run(["uv", "pip", "install", "-q", "--python", py, "-r", str(WORKSPACE / "requirements.txt")], check=True)
+    return py
+
+
 @tool
 def snyk_scan() -> str:
     """Run Snyk security scans over the project workspace: Snyk Code (source) and Snyk Open Source
     (dependencies in requirements.txt). Returns the findings."""
     out = []
-    for label, cmd in (
-        ("SNYK CODE", ["snyk", "code", "test", str(WORKSPACE)]),
-        ("SNYK OPEN SOURCE", ["snyk", "test", f"--file={WORKSPACE / 'requirements.txt'}", "--package-manager=pip"]),
-    ):
+    try:
+        py = _scan_python()
+        os_cmd = ["snyk", "test", "--file=requirements.txt", "--package-manager=pip", f"--command={py}"]
+    except Exception as e:
+        py, os_cmd = None, None
+        out.append(f"== SNYK OPEN SOURCE == could not prepare dependencies: {e}")
+    cmds = [("SNYK CODE", ["snyk", "code", "test", str(WORKSPACE)])]
+    if os_cmd:
+        cmds.append(("SNYK OPEN SOURCE", os_cmd))
+    for label, cmd in cmds:
         try:
             r = subprocess.run(cmd, capture_output=True, text=True, timeout=170, cwd=WORKSPACE)
             out.append(f"== {label} ==\n" + (r.stdout + r.stderr)[-1800:])
         except Exception as e:
             out.append(f"== {label} == failed: {e}")
     return "\n".join(out)
+
+
+@tool
+async def bill_work_item(work_item: str, project: str = "demo-project") -> str:
+    """Record one billable unit in Flexprice for a work item that passed the security gate
+    (Done). Call exactly once per work item, only after a clean or founder-approved scan."""
+    return await record_usage(work_item, project)

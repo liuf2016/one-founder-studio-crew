@@ -14,13 +14,13 @@ from band import Agent, configure_logging
 from band.adapters import LangGraphAdapter, LangGraphAdapterConfig
 
 from crew.roles import ROLE_PROMPTS
-from crew.tools import read_file, recall, remember, snyk_scan, write_file
+from crew.tools import bill_work_item, read_file, recall, remember, snyk_scan, write_file
 
 ROLE_TOOLS = {
     "planner": [recall],
     "builder": [recall, write_file, read_file],
     "reviewer": [recall, remember, read_file],
-    "sentinel": [snyk_scan, remember, recall],
+    "sentinel": [snyk_scan, remember, recall, bill_work_item],
 }
 
 configure_logging(logging.INFO)
@@ -34,8 +34,7 @@ def make_llm() -> ChatOpenAI:
     )
 
 
-async def main(role: str) -> None:
-    load_dotenv()
+async def run_role(role: str) -> None:
     adapter = LangGraphAdapter(
         LangGraphAdapterConfig(custom_section=ROLE_PROMPTS[role]),
         llm=make_llm(),
@@ -46,5 +45,11 @@ async def main(role: str) -> None:
         await agent.run_forever()
 
 
+async def main(roles: list[str]) -> None:
+    """Run roles in ONE process: Cognee's embedded graph DB allows a single process."""
+    load_dotenv()
+    await asyncio.gather(*(run_role(r) for r in roles))
+
+
 if __name__ == "__main__":
-    asyncio.run(main(sys.argv[1]))
+    asyncio.run(main(sys.argv[1:] or list(ROLE_PROMPTS)))

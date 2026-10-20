@@ -4570,6 +4570,7 @@ source = { editable = "." }
 dependencies = [
     { name = "band-sdk", extra = ["langgraph"] },
     { name = "cognee" },
+    { name = "httpx" },
     { name = "langchain-openai" },
     { name = "python-dotenv" },
 ]
@@ -4578,6 +4579,7 @@ dependencies = [
 requires-dist = [
     { name = "band-sdk", extras = ["claude-agent-sdk", "langgraph"], specifier = ">=6.0.1" },
     { name = "cognee", extras = ["gemini"], specifier = "==1.6.5" },
+    { name = "httpx", specifier = ">=0.28.1" },
     { name = "langchain-openai", specifier = ">=1.7.2" },
     { name = "python-dotenv", specifier = ">=1.2.4" },
 ]
